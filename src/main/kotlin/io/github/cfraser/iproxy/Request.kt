@@ -13,4 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-rootProject.name = "iproxy"
+package io.github.cfraser.iproxy
+
+import java.net.URI
+
+/**
+ * [Request] is the HTTP request to be proxied.
+ *
+ * @property uri the proxy request [URI]
+ * @property method the proxy request method
+ * @property headers the proxy request headers
+ * @property body the proxy request body
+ */
+class Request(
+    @JvmField var uri: URI,
+    @JvmField var method: String,
+    @JvmField var headers: Map<String, String>,
+    @JvmField var body: ByteArray?
+) {
+
+  override fun toString() = "$method $uri"
+}

@@ -1,12 +1,12 @@
-# proxi
+# iproxy
 
-[![Test](https://github.com/c-fraser/proxi/workflows/Test/badge.svg)](https://github.com/c-fraser/proxi/actions)
-[![Release](https://img.shields.io/github/v/release/c-fraser/proxi?logo=github&sort=semver)](https://github.com/c-fraser/proxi/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.c-fraser/proxi.svg)](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:proxi)
-[![Javadoc](https://javadoc.io/badge2/io.github.c-fraser/proxi/javadoc.svg)](https://javadoc.io/doc/io.github.c-fraser/proxi)
+[![Test](https://github.com/c-fraser/iproxy/workflows/Test/badge.svg)](https://github.com/c-fraser/iproxy/actions)
+[![Release](https://img.shields.io/github/v/release/c-fraser/iproxy?logo=github&sort=semver)](https://github.com/c-fraser/iproxy/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.c-fraser/iproxy.svg)](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:iproxy)
+[![Javadoc](https://javadoc.io/badge2/io.github.c-fraser/iproxy/javadoc.svg)](https://javadoc.io/doc/io.github.c-fraser/iproxy)
 [![Apache License 2.0](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-`proxi` is an HTTP(S) 1.x proxy server which enables traffic to be intercepted and dynamically
+`iproxy` is an HTTP(S) 1.x proxy server which enables traffic to be intercepted and dynamically
 transformed.
 
 <!--- TOC -->
@@ -25,8 +25,8 @@ transformed.
 
 ## Usage
 
-The `proxi` library is accessible
-via [Maven Central](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:proxi).
+The `iproxy` library is accessible
+via [Maven Central](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:iproxy).
 
 ## Design
 
@@ -60,11 +60,11 @@ HTTPS request is depicted below.
 <!--- TEST_NAME Example01Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Interceptor
-import io.github.cfraser.proxi.Request
-import io.github.cfraser.proxi.Response
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
+import io.github.cfraser.iproxy.Interceptor
+import io.github.cfraser.iproxy.Request
+import io.github.cfraser.iproxy.Response
+import io.github.cfraser.iproxy.Server
+import io.github.cfraser.iproxy.ServerTest.Companion.PORT
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.mockwebserver.MockResponse
@@ -128,9 +128,9 @@ Received: Goodbye!
 <!--- TEST_NAME Example02Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
-import io.github.cfraser.proxi.ServerTest.Companion.asFile
+import io.github.cfraser.iproxy.Server
+import io.github.cfraser.iproxy.ServerTest.Companion.PORT
+import io.github.cfraser.iproxy.ServerTest.Companion.asFile
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -191,11 +191,11 @@ true
 <!--- TEST_NAME Example03Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Proxier
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest
-import io.github.cfraser.proxi.ServerTest.Companion.LOCALHOST
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
+import io.github.cfraser.iproxy.Proxier
+import io.github.cfraser.iproxy.Server
+import io.github.cfraser.iproxy.ServerTest
+import io.github.cfraser.iproxy.ServerTest.Companion.LOCALHOST
+import io.github.cfraser.iproxy.ServerTest.Companion.PORT
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -298,4 +298,4 @@ true
 ## Acknowledgements
 
 Kudos to the [proxyee](https://github.com/monkeyWie/proxyee) project which significantly influenced
-the implementation of `proxi`.
+the implementation of `iproxy`.

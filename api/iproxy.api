@@ -1,0 +1,82 @@
+public final class io/github/cfraser/iproxy/Credentials {
+	public final field password Ljava/lang/String;
+	public final field username Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/github/cfraser/iproxy/Credentials;
+	public static synthetic fun copy$default (Lio/github/cfraser/iproxy/Credentials;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/cfraser/iproxy/Credentials;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class io/github/cfraser/iproxy/Interceptor {
+	public fun getProxier ()Lio/github/cfraser/iproxy/Proxier;
+	public fun intercept (Lio/github/cfraser/iproxy/Request;)V
+	public fun intercept (Lio/github/cfraser/iproxy/Response;)V
+	public fun interceptable (Lio/github/cfraser/iproxy/Request;)Z
+}
+
+public final class io/github/cfraser/iproxy/Interceptor$DefaultImpls {
+	public static fun getProxier (Lio/github/cfraser/iproxy/Interceptor;)Lio/github/cfraser/iproxy/Proxier;
+	public static fun intercept (Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Request;)V
+	public static fun intercept (Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Response;)V
+	public static fun interceptable (Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Request;)Z
+}
+
+public abstract interface class io/github/cfraser/iproxy/Proxier {
+	public static final field Companion Lio/github/cfraser/iproxy/Proxier$Companion;
+	public static fun create ()Lio/github/cfraser/iproxy/Proxier;
+	public static fun create (Lokhttp3/OkHttpClient;)Lio/github/cfraser/iproxy/Proxier;
+	public abstract fun execute (Lio/github/cfraser/iproxy/Request;)Lio/github/cfraser/iproxy/Response;
+}
+
+public final class io/github/cfraser/iproxy/Proxier$Companion {
+	public final fun create ()Lio/github/cfraser/iproxy/Proxier;
+	public final fun create (Lokhttp3/OkHttpClient;)Lio/github/cfraser/iproxy/Proxier;
+	public static synthetic fun create$default (Lio/github/cfraser/iproxy/Proxier$Companion;Lokhttp3/OkHttpClient;ILjava/lang/Object;)Lio/github/cfraser/iproxy/Proxier;
+}
+
+public final class io/github/cfraser/iproxy/Request {
+	public field body [B
+	public field headers Ljava/util/Map;
+	public field method Ljava/lang/String;
+	public field uri Ljava/net/URI;
+	public fun <init> (Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;[B)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/cfraser/iproxy/Response {
+	public field body [B
+	public field headers Ljava/util/Map;
+	public final field request Lio/github/cfraser/iproxy/Request;
+	public field statusCode I
+	public fun <init> (Lio/github/cfraser/iproxy/Request;ILjava/util/Map;[B)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/cfraser/iproxy/Server : java/io/Closeable {
+	public static final field Companion Lio/github/cfraser/iproxy/Server$Companion;
+	public synthetic fun <init> (Lio/netty/channel/ChannelInitializer;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun close ()V
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;)Lio/github/cfraser/iproxy/Server;
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;)Lio/github/cfraser/iproxy/Server;
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;)Lio/github/cfraser/iproxy/Server;
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;)Lio/github/cfraser/iproxy/Server;
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;)Lio/github/cfraser/iproxy/Server;
+	public static final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/iproxy/Credentials;)Lio/github/cfraser/iproxy/Server;
+	public final fun start (I)Lio/github/cfraser/iproxy/Server;
+	public final fun stop ()Lio/github/cfraser/iproxy/Server;
+}
+
+public final class io/github/cfraser/iproxy/Server$Companion {
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;)Lio/github/cfraser/iproxy/Server;
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;)Lio/github/cfraser/iproxy/Server;
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;)Lio/github/cfraser/iproxy/Server;
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;)Lio/github/cfraser/iproxy/Server;
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;)Lio/github/cfraser/iproxy/Server;
+	public final fun create ([Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/iproxy/Credentials;)Lio/github/cfraser/iproxy/Server;
+	public static synthetic fun create$default (Lio/github/cfraser/iproxy/Server$Companion;[Lio/github/cfraser/iproxy/Interceptor;Lio/github/cfraser/iproxy/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/iproxy/Credentials;ILjava/lang/Object;)Lio/github/cfraser/iproxy/Server;
+}
+
