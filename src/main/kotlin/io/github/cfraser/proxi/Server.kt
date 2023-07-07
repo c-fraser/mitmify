@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package io.github.cfraser.iproxy
+package io.github.cfraser.proxi
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.LoadingCache
@@ -113,8 +113,8 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
   /**
    * Synchronously start the proxy [Server] on the [port].
    *
-   * @return `this` started [Server] instance
    * @throws Exception if the proxy server failed to start
+   * @return `this` started [Server] instance
    */
   @Throws(Exception::class)
   fun start(port: Int): Server = apply {
@@ -133,8 +133,8 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
   /**
    * Synchronously stop the proxy [Server].
    *
-   * @return `this` stopped [Server] instance
    * @throws Exception if the proxy server failed to stop
+   * @return `this` stopped [Server] instance
    */
   @Throws(Exception::class)
   fun stop(): Server = apply {
@@ -174,12 +174,12 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
      * given [certificatePath].
      *
      * @param interceptors the [Array] of [Interceptor] to use to intercept proxy requests and
-     *   responses. The first [Interceptor], relative to the given order, that is
-     *   [Interceptor.interceptable] is used for each proxy request
+     * responses. The first [Interceptor], relative to the given order, that is
+     * [Interceptor.interceptable] is used for each proxy request
      * @param proxier the *global* [Proxier] to use to execute proxy requests. The *global*
-     *   [Proxier] may be overridden by a specific [Request] through an [Interceptor.proxier].
+     * [Proxier] may be overridden by a specific [Request] through an [Interceptor.proxier].
      * @param executor the [ExecutorService] to use to asynchronously execute proxy requests. The
-     *   asynchronous execution also includes interception of the proxy request and response.
+     * asynchronous execution also includes interception of the proxy request and response.
      * @param certificatePath the [Path] to the X.509 *trusted certificate authority*
      * @param privateKeyPath the [Path] to the PKCS8 private key for the *trusted certificate*
      * @param credentials the [Credentials] required in the `proxy-authorization` header
@@ -284,7 +284,6 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
 
     /** The [host] and [port] of the proxy request [Destination]. */
     private data class Destination(val host: String, val port: Int)
-
     private var destination by
         observable<Destination?>(null) { _, _, destination ->
           LOGGER.debug("Proxying requests to {}", destination)
@@ -292,6 +291,7 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
 
     /**
      * The [Future] denoting the completion of the *current* proxy request processing.
+     *
      * > The [future] is intended to prevent (proxy response) writes to a closed channel.
      */
     private var future: Future<*>? = null
@@ -415,8 +415,9 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
 
     /**
      * Proxy the [Request] with an [Interceptor] and [Proxier].
+     *
      * > The [NoOpInterceptor] is used if none of the [interceptors] determine the [Request] is
-     * > [Interceptor.interceptable].
+     * [Interceptor.interceptable].
      *
      * @throws FindInterceptorFailure if any [Interceptor.interceptable] check throws an exception
      * @throws RequestInterceptFailure if the [Interceptor] fails to intercept the [Request]
@@ -466,40 +467,25 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
     /** The errors that can occur while proxying a request within the [Handler.channelRead]. */
     private sealed class Error(message: String, cause: Throwable? = null) :
         RuntimeException(message, cause)
-
     private class DecodeFailure(cause: DecoderException) :
         Error("Failed to decode HTTP request", cause)
-
     private object HttpsUnsupported : Error("Certificate and private key required for HTTPS")
-
     private class InvalidUri(uri: String) : Error("Invalid URI $uri")
-
     private class InvalidHost(host: String) : Error("Invalid host $host")
-
     private class InvalidPort(port: String) : Error("Invalid port $port")
-
     private class InvalidDestination(destination: String) : Error("Invalid URI $destination")
-
     private class UnexpectedType(msg: Any) : Error("Read unexpected type ${msg::class.simpleName}")
-
     private object Unauthorized : Error("Unauthorized proxy request")
-
     private class FindInterceptorFailure(cause: Throwable) :
         Error("Unable to find interceptor", cause)
-
     private class RequestInterceptFailure(cause: Throwable) :
         Error("Failed to intercept request", cause)
-
     private class ResponseInterceptFailure(cause: Throwable) :
         Error("Failed to intercept response", cause)
-
     private class ProxierFailure(cause: Throwable) :
         Error("Failed to execute proxy request", cause)
-
     private object ExpectedTLSHandshake : Error("Expected TLS 'client hello' message")
-
     private object UnknownDestination : Error("Unknown destination")
-
     private class CertificateGenerationFailure(cause: Throwable) :
         Error("Failed to generate certificate", cause)
 
@@ -528,7 +514,7 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
         decoderResult()
             .takeIf { it.isFailure }
             ?.cause()
-            ?.let @Suppress("UnsafeCast") { it as? DecoderException }
+            ?.let { it as? DecoderException }
             ?.also { throw DecodeFailure(it) }
       }
 
@@ -560,6 +546,7 @@ class Server private constructor(private val initializer: ChannelInitializer<Cha
       /**
        * Write a [FullHttpResponse] with the [status], [content], and [headers] using the
        * [ChannelHandlerContext].
+       *
        * > Add the [ChannelFutureListener.CLOSE] listener if [keepAlive] is `false`.
        */
       fun ChannelHandlerContext.writeResponse(

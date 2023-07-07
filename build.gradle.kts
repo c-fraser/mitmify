@@ -45,7 +45,7 @@ apply(plugin = "kotlinx-knit")
 
 allprojects {
   group = "io.github.c-fraser"
-  version = "3.0.0"
+  version = "2.1.4"
 }
 
 java {
@@ -105,8 +105,7 @@ configure<SpotlessExtension> {
       See the License for the specific language governing permissions and
       limitations under the License.
       */
-      """
-          .trimIndent()
+      """.trimIndent()
 
   kotlin {
     ktfmt(ktfmtVersion)
@@ -236,7 +235,7 @@ tasks {
     useJUnitPlatform { excludeTags("performance") }
     systemProperties(
         "io.netty.leakDetection.level" to "PARANOID",
-    /*"org.slf4j.simpleLogger.defaultLogLevel" to "debug",
+        /*"org.slf4j.simpleLogger.defaultLogLevel" to "debug",
         "javax.net.debug" to "all"*/ )
   }
 

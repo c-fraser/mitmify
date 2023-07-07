@@ -13,11 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package io.github.cfraser.iproxy
+package io.github.cfraser.proxi
 
 import com.google.common.jimfs.Configuration
 import com.google.common.jimfs.Jimfs
-import io.github.cfraser.iproxy.ServerTest.ErrorInterceptor.Intercept
+import io.github.cfraser.proxi.ServerTest.ErrorInterceptor.Intercept
 import io.javalin.Javalin
 import io.netty.handler.codec.http.HttpHeaderNames
 import io.netty.handler.codec.http.HttpResponseStatus
@@ -199,7 +199,6 @@ class ServerTest {
       Server.create(
               object : Interceptor {
                 override fun interceptable(request: Request) = true
-
                 override fun intercept(request: Request) {
                   request.uri = URI("$baseUrl$TARGET_PATH")
                 }
@@ -336,7 +335,6 @@ class ServerTest {
     private const val PASSWORD = "p@\$sW0rD"
 
     private val FILE_SYSTEM = Jimfs.newFileSystem(Configuration.unix())
-
     fun String.asFile(file: String): Path =
         FILE_SYSTEM.getPath("/${UUID.randomUUID()}")
             .createDirectory()
@@ -346,7 +344,6 @@ class ServerTest {
     val LOCALHOST: String = InetAddress.getByName("localhost").canonicalHostName
     private val LOCALHOST_CERTIFICATE
       get() = HeldCertificate.Builder().addSubjectAlternativeName(LOCALHOST).build()
-
     private val PROXY_CERTIFICATE = HeldCertificate.Builder().certificateAuthority(0).build()
     val PROXY_CERTIFICATE_PATH = PROXY_CERTIFICATE.certificatePem().asFile("proxy.pem")
     val PROXY_PRIVATE_KEY_PATH = PROXY_CERTIFICATE.privateKeyPkcs8Pem().asFile("proxy.key")

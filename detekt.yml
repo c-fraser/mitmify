@@ -2,10 +2,6 @@ complexity:
   LongParameterList:
     functionThreshold: 7
 
-potential-bugs:
-  UnreachableCode:
-    active: false
-
 style:
   MagicNumber:
     active: false
