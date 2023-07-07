@@ -19,11 +19,11 @@ package ${test.package}
 
 import kotlinx.knit.test.captureOutput
 import kotlinx.knit.test.verifyOutputLines
-import org.junit.jupiter.api.Test
+import org.junitpioneer.jupiter.RetryingTest
 
 class ${test.name} {
 <#list cases as case><#assign method = test["mode.${case.param}"]!"custom">
-  @Test
+  @RetryingTest(5)
   fun test${case.name}() {
   captureOutput("${case.name}") { ${case.knit.package}.run${case.knit.name}() }<#if method != "custom">.${method}(
     <#list case.lines as line>

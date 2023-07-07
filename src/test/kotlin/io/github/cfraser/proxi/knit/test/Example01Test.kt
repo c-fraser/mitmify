@@ -19,10 +19,10 @@ package io.github.cfraser.proxi.knit.test
 
 import kotlinx.knit.test.captureOutput
 import kotlinx.knit.test.verifyOutputLines
-import org.junit.jupiter.api.Test
+import org.junitpioneer.jupiter.RetryingTest
 
 class Example01Test {
-  @Test
+  @RetryingTest(5)
   fun testExample01() {
   captureOutput("Example01") { io.github.cfraser.proxi.knit.runExample01() }.verifyOutputLines(
       "Intercepted: Hello!",

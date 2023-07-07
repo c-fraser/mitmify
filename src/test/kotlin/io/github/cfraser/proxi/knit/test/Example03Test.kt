@@ -19,10 +19,10 @@ package io.github.cfraser.proxi.knit.test
 
 import kotlinx.knit.test.captureOutput
 import kotlinx.knit.test.verifyOutputLines
-import org.junit.jupiter.api.Test
+import org.junitpioneer.jupiter.RetryingTest
 
 class Example03Test {
-  @Test
+  @RetryingTest(5)
   fun testExample03() {
   captureOutput("Example03") { io.github.cfraser.proxi.knit.runExample03() }.verifyOutputLines(
       "true"

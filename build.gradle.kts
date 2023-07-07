@@ -69,6 +69,7 @@ dependencies {
 
   testImplementation(kotlin("test"))
   testImplementation(libs.junit.jupiter)
+  testImplementation(libs.junit.pioneer)
   testImplementation(libs.okhttp.mockwebserver)
   testImplementation(libs.okhttp.tls)
   testImplementation(libs.javalin)
