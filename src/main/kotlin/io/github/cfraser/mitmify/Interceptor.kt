@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package io.github.cfraser.proxi
+package io.github.cfraser.mitmify
 
 /**
  * [Interceptor] intercepts a proxy request and the corresponding response. The interception of

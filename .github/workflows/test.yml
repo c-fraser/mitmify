@@ -2,7 +2,7 @@ name: test
 on:
   push:
     branches: [ '**' ]
-    tags-ignore: [ v* ]
+    tags-ignore: [ 'v*' ]
   pull_request:
     branches: [ '**' ]
 jobs:
@@ -10,14 +10,16 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v4
         with:
-          fetch-depth: '0'
-      - name: Setup Java
+          fetch-depth: 0
+      - name: setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: 11
-      - name: Execute test
+          distribution: temurin
+          java-version: 17
+      - name: check code
+        run: ./gradlew spotlessCheck detekt
+      - name: execute test
         run: ./gradlew clean test

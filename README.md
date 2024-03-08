@@ -1,12 +1,12 @@
-# proxi
+# mitmify
 
-[![Test](https://github.com/c-fraser/proxi/workflows/Test/badge.svg)](https://github.com/c-fraser/proxi/actions)
-[![Release](https://img.shields.io/github/v/release/c-fraser/proxi?logo=github&sort=semver)](https://github.com/c-fraser/proxi/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.c-fraser/proxi.svg)](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:proxi)
-[![Javadoc](https://javadoc.io/badge2/io.github.c-fraser/proxi/javadoc.svg)](https://javadoc.io/doc/io.github.c-fraser/proxi)
+[![Test](https://github.com/c-fraser/mitmify/workflows/Test/badge.svg)](https://github.com/c-fraser/mitmify/actions)
+[![Release](https://img.shields.io/github/v/release/c-fraser/mitmify?logo=github&sort=semver)](https://github.com/c-fraser/mitmify/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.c-fraser/mitmify.svg)](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:mitmify)
+[![Javadoc](https://javadoc.io/badge2/io.github.c-fraser/mitmify/javadoc.svg)](https://javadoc.io/doc/io.github.c-fraser/mitmify)
 [![Apache License 2.0](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-`proxi` is an HTTP(S) 1.x proxy server which enables traffic to be intercepted and dynamically
+`mitmify` is an HTTP(S) 1.x proxy server which enables traffic to be intercepted and dynamically
 transformed.
 
 <!--- TOC -->
@@ -25,31 +25,61 @@ transformed.
 
 ## Usage
 
-The `proxi` library is accessible
-via [Maven Central](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:proxi).
+The `mitmify` library is accessible
+via [Maven Central](https://search.maven.org/search?q=g:io.github.c-fraser%20AND%20a:mitmify).
+
+> `mitmify` requires Java 17+.
 
 ## Design
 
-The proxy `Server` proxies requests as displayed in the diagram below.
+The
+proxy [Server](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/index.html)
+proxies requests as displayed in the diagram below.
 
 ![proxy-server](docs/proxy-server.png)
 
-The first `Interceptor` that finds the `Request` to be `Interceptor.interceptable` is used
-to `Interceptor.intercept` the `Request` and `Response`.
+The
+first [Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html)
+that finds
+the [Request](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-request/index.html)
+to
+be [interceptable](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/interceptable.html)
+is used
+to [intercept](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/intercept.html)
+the [Request](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-request/index.html)
+and [Response](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-response/index.html).
+As such, be mindful of
+the [Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html)
+order
+in [Server.create](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/-companion/create.html).
+[Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html)
+instances with overly
+generic [interceptable](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/interceptable.html)
+implementations *should* be nearer to the end of the provided array
+of [Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html),
+otherwise they may supersede the
+*correct* [Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html).
 
-> As such, be mindful of the `Interceptor` order in `Server.create`. `Interceptor` instances with
-> overly generic `Interceptor.interceptable` implementations *should* be nearer to the end of the
-> provided array of `Interceptor`, otherwise they may supersede the *correct* `Interceptor`.
+The [Proxier](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-proxier/index.html)
+handles the execution of the proxy request. To customize how proxy requests are
+executed,
+a [Proxier](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-proxier/index.html)
+implementation may be specified when creating
+the [Server](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/index.html)
+or within
+an [Interceptor](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-interceptor/index.html).
 
-The `Proxier` handles the execution of the proxy request. To customize how proxy requests are
-executed, a `Proxier` implementation may be specified when creating the `Server` or within
-an `Interceptor`.
-
-To proxy HTTPS requests, the `Server` must be created with a CA certificate and (the corresponding)
+To proxy HTTPS requests,
+the [Server](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/index.html)
+must be created with a CA certificate and (the corresponding)
 private key. Additionally, the given CA certificate must be trusted by the (proxy) client(s). This
-is necessary to be able to establish a TLS connection between the client and proxy `Server`, so
-the `Server` can decrypt and intercept the `Request`. The TLS related interactions of proxying an
-HTTPS request is depicted below.
+is necessary to be able to establish a TLS connection between the client and
+proxy [Server](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/index.html),
+so
+the [Server](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-server/index.html)
+can decrypt and intercept
+the [Request](https://c-fraser.github.io/mitmify/api/mitmify/io.github.cfraser.mitmify/-request/index.html).
+The TLS related interactions of proxying an HTTPS request is depicted below.
 
 ![https](docs/https.png)
 
@@ -60,11 +90,11 @@ HTTPS request is depicted below.
 <!--- TEST_NAME Example01Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Interceptor
-import io.github.cfraser.proxi.Request
-import io.github.cfraser.proxi.Response
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
+import io.github.cfraser.mitmify.Interceptor
+import io.github.cfraser.mitmify.Request
+import io.github.cfraser.mitmify.Response
+import io.github.cfraser.mitmify.Server
+import io.github.cfraser.mitmify.ServerTest.Companion.PORT
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.mockwebserver.MockResponse
@@ -78,27 +108,27 @@ fun runExample01() {
 -->
 
 ```kotlin
-// Initialize a mock web server which is the target for proxy requests.
+// Initialize a mock web server which is the target for proxy requests
 MockWebServer().use { target ->
-  // Enqueue a mock response for the proxied request.
+  // Enqueue a mock response for the proxied request
   target.enqueue(MockResponse().setBody("Hello!"))
-  // Define a response interceptor to modify the proxy response.
+  // Define a response interceptor to modify the proxy response
   class ResponseInterceptor : Interceptor {
-    // Use this interceptor for "hello" requests.
+    // Use this interceptor for "hello" requests
     override fun interceptable(request: Request) = request.uri.path == "/hello"
     override fun intercept(response: Response) {
-      // Print the response from the proxy request.
+      // Print the response from the proxy request
       response.body?.let(::String)?.also { println("Intercepted: $it") }
-      // Change the proxy response body.
+      // Change the proxy response body
       response.body = "Goodbye!".toByteArray()
     }
   }
-  // Create and start a proxy server.
-  Server.create(ResponseInterceptor()).start(PORT).use {
-    // Initialize an HTTP client that uses the proxy server.
+  // Create and start a proxy server
+  Server.create(ResponseInterceptor()).start(PORT).use { _ ->
+    // Initialize an HTTP client that uses the proxy server
     val client =
       OkHttpClient.Builder().proxySelector(ProxySelector.of(InetSocketAddress(PORT))).build()
-    // Execute a request then print the (intercepted) response body.
+    // Execute a request then print the (intercepted) response body
     client
       .newCall(okhttp3.Request.Builder().url(target.url("/hello")).build())
       .execute()
@@ -128,9 +158,9 @@ Received: Goodbye!
 <!--- TEST_NAME Example02Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
-import io.github.cfraser.proxi.ServerTest.Companion.asFile
+import io.github.cfraser.mitmify.Server
+import io.github.cfraser.mitmify.ServerTest.Companion.PORT
+import io.github.cfraser.mitmify.ServerTest.Companion.asFile
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -145,26 +175,26 @@ fun runExample02() {
 -->
 
 ```kotlin
-// Create a root certificate authority.
+// Create a root certificate authority
 val rootCertificate = HeldCertificate.Builder().certificateAuthority(1).build()
-// Create an intermediate certificate authority (signed by the root certificate).
+// Create an intermediate certificate authority (signed by the root certificate)
 val intermediateCertificate =
   HeldCertificate.Builder().certificateAuthority(0).signedBy(rootCertificate).build()
-// Create a client certificates that trust the root certificate.
+// Create a client certificates that trust the root certificate
 val clientCertificates =
   HandshakeCertificates.Builder().addTrustedCertificate(rootCertificate.certificate).build()
 // Create and start a proxy server which uses the intermediate certificate authority to generate
-// trusted certificates for the (destination of) proxy requests.
+// trusted certificates for the (destination of) proxy requests
 Server.create(
   // To proxy HTTPS requests the proxy server requires a CA certificate and private key.
   // The proxy client(s) must trust the provided CA certificate so the proxy server can generate a
-  // (trusted) certificate to establish a TLS connection (to access the proxy request).
+  // (trusted) certificate to establish a TLS connection (to access the proxy request)
   certificatePath = intermediateCertificate.certificatePem().asFile("proxy.pem"),
   privateKeyPath = intermediateCertificate.privateKeyPkcs8Pem().asFile("proxy.key")
 )
   .start(PORT)
-  .use {
-    // Initialize an HTTPS client that uses the proxy server and client certificates.
+  .use { _ ->
+    // Initialize an HTTPS client that uses the proxy server and client certificates
     val client =
       OkHttpClient.Builder()
         .proxySelector(ProxySelector.of(InetSocketAddress(PORT)))
@@ -172,7 +202,7 @@ Server.create(
           clientCertificates.sslSocketFactory(), clientCertificates.trustManager
         )
         .build()
-    // Execute an HTTPS request and expect a successful response code.
+    // Execute an HTTPS request and expect a successful response code
     client
       .newCall(Request.Builder().url("https://httpbin.org/get").build())
       .execute()
@@ -191,11 +221,14 @@ true
 <!--- TEST_NAME Example03Test --> 
 
 <!--- INCLUDE
-import io.github.cfraser.proxi.Proxier
-import io.github.cfraser.proxi.Server
-import io.github.cfraser.proxi.ServerTest
-import io.github.cfraser.proxi.ServerTest.Companion.LOCALHOST
-import io.github.cfraser.proxi.ServerTest.Companion.PORT
+import io.github.cfraser.mitmify.Proxier
+import io.github.cfraser.mitmify.Server
+import io.github.cfraser.mitmify.ServerTest.Companion.PORT
+import io.github.cfraser.mitmify.ServerTest.Companion.clientSocketFactory
+import io.github.cfraser.mitmify.ServerTest.Companion.clientTrustManager
+import io.github.cfraser.mitmify.ServerTest.Companion.localhost
+import io.github.cfraser.mitmify.ServerTest.Companion.proxyCertPath
+import io.github.cfraser.mitmify.ServerTest.Companion.proxyKeyPath
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -212,32 +245,32 @@ fun runExample03() {
 -->
 
 ```kotlin
-// Create a root certificate for the client and server to trust.
+// Create a root certificate for the client and server to trust
 val rootCertificate = HeldCertificate.Builder().certificateAuthority(0).build()
-// Create a server certificate (signed by the root certificate) for the mock web server.
+// Create a server certificate (signed by the root certificate) for the mock web server
 val serverCertificate =
   HandshakeCertificates.Builder()
     .addTrustedCertificate(rootCertificate.certificate)
     .heldCertificate(
       HeldCertificate.Builder()
-        .addSubjectAlternativeName(LOCALHOST)
+        .addSubjectAlternativeName(localhost)
         .signedBy(rootCertificate)
         .build()
     )
     .build()
-// Create a client certificate (signed by the root certificate) for the client.
+// Create a client certificate (signed by the root certificate) for the client
 val clientCertificate =
   HandshakeCertificates.Builder()
     .addTrustedCertificate(rootCertificate.certificate)
     .heldCertificate(HeldCertificate.Builder().signedBy(rootCertificate).build())
     .build()
-// Initialize an HTTPS mock web server which is the target for proxy requests.
+// Initialize an HTTPS mock web server which is the target for proxy requests
 MockWebServer()
   .apply { useHttps(serverCertificate.sslSocketFactory(), false) }
   .apply { requestClientAuth() }
   .use { target ->
     target.enqueue(MockResponse())
-    // Create a proxier that uses the client certificates.
+    // Create a proxier that uses the client certificates
     val proxier =
       Proxier.create(
         OkHttpClient.Builder()
@@ -246,25 +279,25 @@ MockWebServer()
           )
           .build()
       )
-    // Create and start the proxy server that can connect to the mock web server.
+    // Create and start the proxy server that can connect to the mock web server
     Server.create(
       proxier = proxier,
-      // Provide a certificate and private key to proxy HTTPS requests.
-      certificatePath = ServerTest.PROXY_CERTIFICATE_PATH,
-      privateKeyPath = ServerTest.PROXY_PRIVATE_KEY_PATH
+      // Provide a certificate and private key to proxy HTTPS requests
+      certificatePath = proxyCertPath,
+      privateKeyPath = proxyKeyPath
     )
       .start(PORT)
-      .use {
-        // Initialize an HTTPS client that uses the proxy server and trusts its certificate.
+      .use { _ ->
+        // Initialize an HTTPS client that uses the proxy server and trusts its certificate
         val client =
           OkHttpClient.Builder()
             .proxySelector(ProxySelector.of(InetSocketAddress(PORT)))
             .sslSocketFactory(
-              ServerTest.PROXY_CLIENT_SOCKET_FACTORY,
-              ServerTest.PROXY_CLIENT_TRUST_MANGER
+              clientSocketFactory,
+              clientTrustManager
             )
             .build()
-        // Execute an HTTPS the request to the target and expect response to be successful.
+        // Execute an HTTPS the request to the target and expect response to be successful
         client
           .newCall(Request.Builder().url(target.url("/")).build())
           .execute()
@@ -297,5 +330,6 @@ true
 
 ## Acknowledgements
 
-Kudos to the [proxyee](https://github.com/monkeyWie/proxyee) project which significantly influenced
-the implementation of `proxi`.
+Kudos to [mitmproxy](https://github.com/mitmproxy/mitmproxy)
+and [proxyee](https://github.com/monkeyWie/proxyee) which significantly influenced
+the implementation of `mitmify`.

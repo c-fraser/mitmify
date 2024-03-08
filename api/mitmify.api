@@ -1,0 +1,82 @@
+public final class io/github/cfraser/mitmify/Credentials : java/lang/Record {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/github/cfraser/mitmify/Credentials;
+	public static synthetic fun copy$default (Lio/github/cfraser/mitmify/Credentials;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/cfraser/mitmify/Credentials;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun password ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+	public final fun username ()Ljava/lang/String;
+}
+
+public abstract interface class io/github/cfraser/mitmify/Interceptor {
+	public fun getProxier ()Lio/github/cfraser/mitmify/Proxier;
+	public fun intercept (Lio/github/cfraser/mitmify/Request;)V
+	public fun intercept (Lio/github/cfraser/mitmify/Response;)V
+	public fun interceptable (Lio/github/cfraser/mitmify/Request;)Z
+}
+
+public final class io/github/cfraser/mitmify/Interceptor$DefaultImpls {
+	public static fun getProxier (Lio/github/cfraser/mitmify/Interceptor;)Lio/github/cfraser/mitmify/Proxier;
+	public static fun intercept (Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Request;)V
+	public static fun intercept (Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Response;)V
+	public static fun interceptable (Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Request;)Z
+}
+
+public abstract interface class io/github/cfraser/mitmify/Proxier {
+	public static final field Companion Lio/github/cfraser/mitmify/Proxier$Companion;
+	public static fun create ()Lio/github/cfraser/mitmify/Proxier;
+	public static fun create (Lokhttp3/OkHttpClient;)Lio/github/cfraser/mitmify/Proxier;
+	public abstract fun execute (Lio/github/cfraser/mitmify/Request;)Lio/github/cfraser/mitmify/Response;
+}
+
+public final class io/github/cfraser/mitmify/Proxier$Companion {
+	public final fun create ()Lio/github/cfraser/mitmify/Proxier;
+	public final fun create (Lokhttp3/OkHttpClient;)Lio/github/cfraser/mitmify/Proxier;
+	public static synthetic fun create$default (Lio/github/cfraser/mitmify/Proxier$Companion;Lokhttp3/OkHttpClient;ILjava/lang/Object;)Lio/github/cfraser/mitmify/Proxier;
+}
+
+public final class io/github/cfraser/mitmify/Request {
+	public field body [B
+	public field headers Ljava/util/Map;
+	public field method Ljava/lang/String;
+	public field uri Ljava/net/URI;
+	public fun <init> (Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;[B)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/cfraser/mitmify/Response {
+	public field body [B
+	public field headers Ljava/util/Map;
+	public final field request Lio/github/cfraser/mitmify/Request;
+	public field statusCode I
+	public fun <init> (Lio/github/cfraser/mitmify/Request;ILjava/util/Map;[B)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/cfraser/mitmify/Server : java/io/Closeable {
+	public static final field Companion Lio/github/cfraser/mitmify/Server$Companion;
+	public synthetic fun <init> (Lio/netty/channel/ChannelInitializer;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun close ()V
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;)Lio/github/cfraser/mitmify/Server;
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;)Lio/github/cfraser/mitmify/Server;
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;)Lio/github/cfraser/mitmify/Server;
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;)Lio/github/cfraser/mitmify/Server;
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;)Lio/github/cfraser/mitmify/Server;
+	public static final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/mitmify/Credentials;)Lio/github/cfraser/mitmify/Server;
+	public final fun start (I)Lio/github/cfraser/mitmify/Server;
+	public final fun stop ()Lio/github/cfraser/mitmify/Server;
+}
+
+public final class io/github/cfraser/mitmify/Server$Companion {
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;)Lio/github/cfraser/mitmify/Server;
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;)Lio/github/cfraser/mitmify/Server;
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;)Lio/github/cfraser/mitmify/Server;
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;)Lio/github/cfraser/mitmify/Server;
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;)Lio/github/cfraser/mitmify/Server;
+	public final fun create ([Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/mitmify/Credentials;)Lio/github/cfraser/mitmify/Server;
+	public static synthetic fun create$default (Lio/github/cfraser/mitmify/Server$Companion;[Lio/github/cfraser/mitmify/Interceptor;Lio/github/cfraser/mitmify/Proxier;Ljava/util/concurrent/ExecutorService;Ljava/nio/file/Path;Ljava/nio/file/Path;Lio/github/cfraser/mitmify/Credentials;ILjava/lang/Object;)Lio/github/cfraser/mitmify/Server;
+}
+
