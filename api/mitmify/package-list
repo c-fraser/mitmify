@@ -1,0 +1,38 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.github.cfraser.mitmify////PointingToDeclaration/mitmify/io.github.cfraser.mitmify/index.html
+$dokka.location:io.github.cfraser.mitmify/Credentials///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-credentials/index.html
+$dokka.location:io.github.cfraser.mitmify/Credentials/Credentials/#kotlin.String#kotlin.String/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-credentials/-credentials.html
+$dokka.location:io.github.cfraser.mitmify/Credentials/password/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-credentials/password.html
+$dokka.location:io.github.cfraser.mitmify/Credentials/username/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-credentials/username.html
+$dokka.location:io.github.cfraser.mitmify/Interceptor///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-interceptor/index.html
+$dokka.location:io.github.cfraser.mitmify/Interceptor/intercept/#io.github.cfraser.mitmify.Request/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-interceptor/intercept.html
+$dokka.location:io.github.cfraser.mitmify/Interceptor/intercept/#io.github.cfraser.mitmify.Response/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-interceptor/intercept.html
+$dokka.location:io.github.cfraser.mitmify/Interceptor/interceptable/#io.github.cfraser.mitmify.Request/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-interceptor/interceptable.html
+$dokka.location:io.github.cfraser.mitmify/Interceptor/proxier/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-interceptor/proxier.html
+$dokka.location:io.github.cfraser.mitmify/Proxier.Companion///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-proxier/-companion/index.html
+$dokka.location:io.github.cfraser.mitmify/Proxier.Companion/create/#okhttp3.OkHttpClient/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-proxier/-companion/create.html
+$dokka.location:io.github.cfraser.mitmify/Proxier///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-proxier/index.html
+$dokka.location:io.github.cfraser.mitmify/Proxier/execute/#io.github.cfraser.mitmify.Request/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-proxier/execute.html
+$dokka.location:io.github.cfraser.mitmify/Request///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/index.html
+$dokka.location:io.github.cfraser.mitmify/Request/Request/#java.net.URI#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.ByteArray?/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/-request.html
+$dokka.location:io.github.cfraser.mitmify/Request/body/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/body.html
+$dokka.location:io.github.cfraser.mitmify/Request/headers/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/headers.html
+$dokka.location:io.github.cfraser.mitmify/Request/method/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/method.html
+$dokka.location:io.github.cfraser.mitmify/Request/toString/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/to-string.html
+$dokka.location:io.github.cfraser.mitmify/Request/uri/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-request/uri.html
+$dokka.location:io.github.cfraser.mitmify/Response///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/index.html
+$dokka.location:io.github.cfraser.mitmify/Response/Response/#io.github.cfraser.mitmify.Request#kotlin.Int#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.ByteArray?/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/-response.html
+$dokka.location:io.github.cfraser.mitmify/Response/body/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/body.html
+$dokka.location:io.github.cfraser.mitmify/Response/headers/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/headers.html
+$dokka.location:io.github.cfraser.mitmify/Response/request/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/request.html
+$dokka.location:io.github.cfraser.mitmify/Response/statusCode/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/status-code.html
+$dokka.location:io.github.cfraser.mitmify/Response/toString/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-response/to-string.html
+$dokka.location:io.github.cfraser.mitmify/Server.Companion///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/-companion/index.html
+$dokka.location:io.github.cfraser.mitmify/Server.Companion/create/#kotlin.Array[io.github.cfraser.mitmify.Interceptor]#io.github.cfraser.mitmify.Proxier?#java.util.concurrent.ExecutorService?#java.nio.file.Path?#java.nio.file.Path?#io.github.cfraser.mitmify.Credentials?/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/-companion/create.html
+$dokka.location:io.github.cfraser.mitmify/Server///PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/index.html
+$dokka.location:io.github.cfraser.mitmify/Server/close/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/close.html
+$dokka.location:io.github.cfraser.mitmify/Server/start/#kotlin.Int/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/start.html
+$dokka.location:io.github.cfraser.mitmify/Server/stop/#/PointingToDeclaration/mitmify/io.github.cfraser.mitmify/-server/stop.html
+io.github.cfraser.mitmify
+

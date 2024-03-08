@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>create</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../../index.html">
+                            mitmify
+                    </a>
+            </div>
+            <div class="library-version">
+0.1.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="mitmify::io.github.cfraser.mitmify/Server.Companion/create/#kotlin.Array[io.github.cfraser.mitmify.Interceptor]#io.github.cfraser.mitmify.Proxier?#java.util.concurrent.ExecutorService?#java.nio.file.Path?#java.nio.file.Path?#io.github.cfraser.mitmify.Credentials?/PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../../index.html">mitmify</a><span class="delimiter">/</span><a href="../../index.html">io.github.cfraser.mitmify</a><span class="delimiter">/</span><a href="../index.html">Server</a><span class="delimiter">/</span><a href="index.html">Companion</a><span class="delimiter">/</span><span class="current">create</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>create</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html"><span class="token annotation builtin">JvmStatic</span></a></div><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="create.html"><span class="token function">create</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>interceptors<span class="token operator">: </span><a href="../../-interceptor/index.html">Interceptor</a><span class="token punctuation">, </span></span><span class="parameter ">proxier<span class="token operator">: </span><a href="../../-proxier/index.html">Proxier</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">executor<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">certificatePath<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">privateKeyPath<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">credentials<span class="token operator">: </span><a href="../../-credentials/index.html">Credentials</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">Server</a></div><p class="paragraph">Create a proxy <a href="../index.html">Server</a> instance.</p><p class="paragraph">The <a href="create.html">interceptors</a> are used to dynamically transform intercepted <a href="../../-request/index.html">Request</a> and <a href="../../-response/index.html">Response</a> data. When a <a href="../../-request/index.html">Request</a> is received by the proxy <a href="../index.html">Server</a> it is associated with an <a href="../../-interceptor/index.html">Interceptor</a> by finding the <strong>first</strong>, respective to the given order, that determines the <a href="../../-request/index.html">Request</a> to be <a href="../../-interceptor/interceptable.html">Interceptor.interceptable</a>. If the <a href="../../-request/index.html">Request</a> is not <i>interceptable</i>, then a default <i>no-op</i> <a href="../../-interceptor/index.html">Interceptor</a> is used.</p><p class="paragraph">For the proxy <a href="../index.html">Server</a> to support proxying <i>HTTPS</i> requests, the <a href="create.html">certificatePath</a> and <a href="create.html">privateKeyPath</a> must be provided. This enables the server to decrypt the proxied requests and responses for interception, assuming the client correctly trusts the certificate at the given <a href="create.html">certificatePath</a>.</p><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">the proxy <a href="../index.html">Server</a></p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>interceptors</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a> of <a href="../../-interceptor/index.html">Interceptor</a> to use to intercept proxy requests and responses. The first <a href="../../-interceptor/index.html">Interceptor</a>, relative to the given order, that is <a href="../../-interceptor/interceptable.html">Interceptor.interceptable</a> is used for each proxy request</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>proxier</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <i>global</i> <a href="../../-proxier/index.html">Proxier</a> to use to execute proxy requests. The <i>global</i> <a href="../../-proxier/index.html">Proxier</a> may be overridden by a specific <a href="../../-request/index.html">Request</a> through an <a href="../../-interceptor/proxier.html">Interceptor.proxier</a>.</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>executor</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a> to use to asynchronously execute proxy requests. The asynchronous execution also includes interception of the proxy request and response.</p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>certificate</span><wbr></wbr><span><span>Path</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a> to the X.509 <i>trusted certificate authority</i></p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>private</span><wbr></wbr><span>Key</span><wbr></wbr><span><span>Path</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a> to the PKCS8 private key for the <i>trusted certificate</i></p></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>credentials</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="../../-credentials/index.html">Credentials</a> required in the <code class="lang-kotlin">proxy-authorization</code> header</p></div></div></div></div></div><h4 class="">Throws</h4><div class="table"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-runtime-exception/index.html"><span>Runtime</span><wbr></wbr><span><span>Exception</span></span></a></div></span></div><div><div class="title"><p class="paragraph">if the proxy server failed to initialize</p></div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>Copyright &copy; 2022 c-fraser</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
